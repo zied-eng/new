@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clock</title>
+  <style>
+    #clock {
+      font-size: 36px;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="clock"></div>
+
+  <script>
+    function updateClock() {
+      var currentTime = new Date();
+      var currentHours = currentTime.getHours();
+      var currentMinutes = currentTime.getMinutes();
+      var currentSeconds = currentTime.getSeconds();
+
+      // Add leading zero if minutes or seconds are less than 10
+      currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+      currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+      var timeOfDay = (currentHours < 12) ? "AM" : "PM";
+
+      // Convert the hours component to 12-hour format if necessary
+      currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+      currentHours = (currentHours === 0) ? 12 : currentHours;
+
+      var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+
+      document.getElementById("clock").innerHTML = currentTimeString;
+    }
+
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
